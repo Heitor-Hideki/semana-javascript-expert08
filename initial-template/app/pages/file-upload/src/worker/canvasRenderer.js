@@ -1,6 +1,6 @@
 /** @type {HTMLCanvasElement} canvas  */
-let _canvas = {}
-let _ctx = {}
+let _canvas
+let _ctx
 
 export default class CanvasRenderer {
   /**
@@ -23,15 +23,17 @@ export default class CanvasRenderer {
   }
 
   static getRenderer(canvas) {
-    _canvas = canvas
-    _ctx = canvas.getContext("2d")
     const renderer = this
     let pendingFrame = null;
+    _canvas = canvas
+    _ctx = canvas.getContext("2d")
+    
     return frame => {
       const renderAnimationFrame = () => {
         renderer.draw(pendingFrame);
         pendingFrame = null;
       }
+
       if(!pendingFrame) {
         requestAnimationFrame(renderAnimationFrame)
       } else {

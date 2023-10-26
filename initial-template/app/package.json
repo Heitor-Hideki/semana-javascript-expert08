@@ -1,7 +1,6 @@
 {
   "name": "ffmpeg-wasm-streaming-video-player",
   "version": "0.0.1",
-  "type": "module",
   "description": "An example of using FFmpeg.wasm to perform streaming transcoding within the browser",
   "main": "app.js",
   "directories": {

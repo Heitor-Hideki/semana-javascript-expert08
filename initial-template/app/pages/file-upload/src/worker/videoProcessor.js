@@ -40,7 +40,7 @@ export default class VideoProcessor {
         }).then(() => {
           setTimeout(() => {
             controller.close()
-          }, 3000)
+          }, 1000)
         })
       }
     })
@@ -50,10 +50,10 @@ export default class VideoProcessor {
     const stream = file.stream();
     const fileName = file.name.split('/').pop().replace('.mp4', '')
     await this.mp4Decoder(encoderConfig, stream)
-    .pipeTo(new WritableStream({
-      write(frame) {
-        renderFrame(frame)
-      }
-    }))
+      .pipeTo(new WritableStream({
+        write(frame) {
+          renderFrame(frame)
+        }
+      }))
   }
 }

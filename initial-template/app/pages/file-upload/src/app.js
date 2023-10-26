@@ -19,8 +19,6 @@ worker.onmessage = ({ data }) => {
     console.log('recebi no processo da view', data)
 }
 
-worker.postMessage('enviado do pai')
-
 let took = ''
 view.configureOnFileChange(file => {
     const canvas = view.getCanvas();
@@ -44,7 +42,6 @@ async function fakeFetch() {
     const response = await fetch(filePath, {
         method: 'HEAD'
     })
-    
 
     const file = new File([await response.blob()], filePath, {
         type: 'video/mp4',

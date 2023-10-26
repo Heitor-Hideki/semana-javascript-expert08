@@ -28,7 +28,7 @@ export default class MP4Demuxer {
   }
   #description({ id }) {
     const track = this.#file.getTrackById(id);
-    for (const entry of track.media.minf.stbl.stsd.entries) {
+    for (const entry of track.mdia.minf.stbl.stsd.entries) {
       const box = entry.avcC || entry.hvcC || entry.vpcC || entry.av1C;
       if (box) {
         const stream = new DataStream(undefined, 0, DataStream.BIG_ENDIAN);
