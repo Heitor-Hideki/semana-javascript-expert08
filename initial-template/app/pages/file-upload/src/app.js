@@ -39,9 +39,7 @@ view.configureOnFileChange(file => {
 //método utilizado apenas para debug, simula um usuário selecionando um arquivo
 async function fakeFetch() {
     const filePath = '/videos/frag_bunny.mp4'
-    const response = await fetch(filePath, {
-        method: 'HEAD'
-    })
+    const response = await fetch(filePath)
 
     const file = new File([await response.blob()], filePath, {
         type: 'video/mp4',
