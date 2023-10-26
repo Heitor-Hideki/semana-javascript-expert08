@@ -1,4 +1,4 @@
-import { createFile, DataStream } from '../deps/mp4box.0.5.2'
+import { createFile, DataStream } from '../deps/mp4box.0.5.2.js'
 
 export default class MP4Demuxer {
   #onConfig
@@ -59,7 +59,7 @@ export default class MP4Demuxer {
       description: this.#description(track),
       durationSecs: info.duration / info.timescale,
     })
-    
+
     this.#file.setExtractionOptions(track.id)
     this.#file.start()
   }

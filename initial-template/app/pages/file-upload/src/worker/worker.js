@@ -1,6 +1,6 @@
-import CanvasRenderer from "./canvasRenderer"
-import MP4Demuxer from "./mp4Demuxer"
-import VideoProcessor from "./videoProcessor"
+import CanvasRenderer from "./canvasRenderer.js"
+import MP4Demuxer from "./mp4Demuxer.js"
+import VideoProcessor from "./videoProcessor.js"
 
 const qvgaConstraints = {
   width: 320,

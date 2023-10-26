@@ -1,4 +1,4 @@
-/** @param {HTMLCanvasElement} canvas  */
+/** @type {HTMLCanvasElement} canvas  */
 let _canvas = {}
 let _ctx = {}
 
@@ -10,8 +10,8 @@ export default class CanvasRenderer {
   static draw(frame) {
     const { displayHeight, displayWidth } = frame
 
-    _canvas.height = displayHeight
     _canvas.width = displayWidth
+    _canvas.height = displayHeight
     _ctx.drawImage(
       frame,
       0, 
