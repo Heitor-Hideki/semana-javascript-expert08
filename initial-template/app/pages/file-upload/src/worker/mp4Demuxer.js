@@ -18,14 +18,17 @@ export default class MP4Demuxer {
     this.#onChunk = onChunk
 
     this.#file = createFile()
+    //linka o método onReady do arquivo com o onReady da class
     this.#file.onReady = this.#onReady.bind(this)
 
+    //linka o método onSamples do arquivo com o onSamples da class
     this.#file.onSamples = this.#onSamples.bind(this)
 
     this.#file.onError = (error) => console.error('deu ruim demuxer', error);
 
     return this.#init(stream)
   }
+  
   #description({ id }) {
     const track = this.#file.getTrackById(id);
     for (const entry of track.mdia.minf.stbl.stsd.entries) {

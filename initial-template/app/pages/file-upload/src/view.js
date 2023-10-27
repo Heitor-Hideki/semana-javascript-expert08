@@ -16,6 +16,7 @@ export default class View {
   }
 
   getCanvas() {
+    //transfere o controle do canvas para fora da view (no caso é utilizado no worker)
     return this.#canvas.transferControlToOffscreen();
   }
 
@@ -56,5 +57,19 @@ export default class View {
 
   configureOnFileChange(fn){
     this.#fileUpload.addEventListener('change', this.onChange(fn))
+  }
+
+  //recebe o arquivo, cria um link e clica nele para acionar o download na máquina
+  downloadBlobAsFile(buffers, filename){
+    const blob = new Blob(buffers, { type: 'video/webm' })
+    const blobUrl = URL.createObjectURL(blob)
+
+    const a = document.createElement('a')
+    a.href = blobUrl
+    a.download = filename
+
+    a.click()
+
+    URL.revokeObjectURL(blobUrl)
   }
 }

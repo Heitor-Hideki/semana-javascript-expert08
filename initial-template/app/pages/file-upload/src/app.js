@@ -11,15 +11,22 @@ worker.onerror = (error) => {
     console.error('error worker', error)
 }
 
+//acionado toda vez que o worker chama o self.postMessage
 worker.onmessage = ({ data }) => {
     if(data.status !== 'done') return;
     clock.stop()
     view.updateElapsedTime(`Process took ${took.replace('ago', '')}`)
+    if (!data.buffers) return;
+    view.downloadBlobAsFile(
+        data.buffers,
+        data.filename
+    )
 
     console.log('recebi no processo da view', data)
 }
 
 let took = ''
+//aciona todo o processo quando um arquivo é selecionado
 view.configureOnFileChange(file => {
     const canvas = view.getCanvas();
 
@@ -55,4 +62,4 @@ async function fakeFetch() {
     document.getElementById('fileUpload').dispatchEvent(event)
 }
 
-fakeFetch()
+// fakeFetch()
