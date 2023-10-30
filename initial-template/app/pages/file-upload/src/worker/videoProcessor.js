@@ -54,6 +54,7 @@ export default class VideoProcessor {
     })
   }
 
+  // stream duplex que encoda os fragmentos do vídeo
   encode144p(encoderConfig){
     let _encoder;
 
@@ -200,13 +201,17 @@ export default class VideoProcessor {
     const fileName = file.name.split('/').pop().replace('.mp4', '')
 
     console.log('fileName', fileName)
+    // demultiplexa com o mp4Box
     await this.mp4Decoder(stream)
+      // encoda cada fragmento com o videoEncoder
       .pipeThrough(
         this.encode144p(encoderConfig)
       )
+      // renderiza os frames
       .pipeThrough(
         this.renderDecodedFramesAndGetEncodedChunks(renderFrame)
       )
+      // transforma o arquivo em WebM
       .pipeThrough(this.transformIntoWebM())
       // salvar o arquivo na máquina 
       // .pipeThrough(new TransformStream({
@@ -223,6 +228,7 @@ export default class VideoProcessor {
 
       //   }
       // }))
+      // faz upload do arquivo para os Servidor
       .pipeTo(this.upload(fileName, '144p', 'webm'))
 
       sendMessage({

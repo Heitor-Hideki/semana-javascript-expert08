@@ -30,6 +30,7 @@ let took = ''
 view.configureOnFileChange(file => {
     const canvas = view.getCanvas();
 
+    //joga o processamento do arquivo e o controle do canvas para o worker
     worker.postMessage({
         file,
         canvas

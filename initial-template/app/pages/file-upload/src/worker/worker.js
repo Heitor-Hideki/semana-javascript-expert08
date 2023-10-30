@@ -43,6 +43,7 @@ const webMWriterConfig = {
   bitrate: encoderConfig.bitrate
 }
 
+//instancia todas as classes auxiliares
 const mp4Demuxer = new MP4Demuxer()
 const service = new Service({
   url: 'http://localhost:3000'
@@ -55,6 +56,8 @@ const videoProcessor = new VideoProcessor({
 
 onmessage = async ({ data }) => {
   const renderFrame = CanvasRenderer.getRenderer(data.canvas);
+
+  //inicializa o processamento do vídeo e fornece o arquivo, o método para renderização no canvas,  as configurações do encoder e o método para postar mensagens no worker
   await videoProcessor.start({
     file: data.file,
     renderFrame,

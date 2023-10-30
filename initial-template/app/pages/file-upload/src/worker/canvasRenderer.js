@@ -22,6 +22,7 @@ export default class CanvasRenderer {
     frame.close();
   }
 
+  //método que renderiza no canvas frame a frame o conteúdo do vídeo 
   static getRenderer(canvas) {
     const renderer = this
     let pendingFrame = null;
