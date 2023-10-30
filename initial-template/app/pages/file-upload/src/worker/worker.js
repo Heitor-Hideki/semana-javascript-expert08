@@ -37,7 +37,8 @@ const encoderConfig = {
 }
 
 const webMWriterConfig = {
-  coded: 'VP9',
+  ...qvgaConstraints,
+  codec: 'VP9',
   width: encoderConfig.width,
   height: encoderConfig.height,
   bitrate: encoderConfig.bitrate
